@@ -1,1 +1,1 @@
-{"name":"Pay To Stay App","short_name":"P2S","start_url":".","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/vite-deploy/","icons":[{"src":"https://app.pay2stay.com/assets/icon/favicon-192x192.png","sizes":"192x192","type":"image/png"}],"theme_color":"#ffffff"}
+{"name":"Pay To Stay App","short_name":"P2S","start_url":".","display":"browser","background_color":"#ffffff","lang":"en","scope":"/vite-deploy/","icons":[{"src":"https://app.pay2stay.com/assets/icon/favicon-192x192.png","sizes":"192x192","type":"image/png"}],"theme_color":"#ffffff"}
