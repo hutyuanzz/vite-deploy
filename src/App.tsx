@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef, useState } from "react";
+import QrScanner from "qr-scanner";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const qrRef = useRef(null);
+
+  const [qrScanner, setQrScanner] = useState<QrScanner | null>(null);
+  const [showCamera, setShowCamera] = useState<boolean>(false);
+
+  const startScan = async () => {
+    const qrCameraElm: HTMLVideoElement | null = qrRef.current;
+    if (qrCameraElm) {
+      const qrScanner = new QrScanner(
+        qrCameraElm,
+        (result: QrScanner.ScanResult) => {
+          console.log(result.data);
+        },
+        {}
+      );
+      setQrScanner(qrScanner);
+      const playPromise = qrScanner.start();
+      if (playPromise) {
+        playPromise
+          .then(() => {
+            setShowCamera(true);
+          })
+          .catch();
+      }
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="scan-qr-code">
+      <div className="camera-area">
+        <div className="wrap-background">
+          <div className="border-cameara top-left-horizontal horizontal" />
+          <div className="border-cameara top-right-horizontal horizontal" />
+          <div className="border-cameara bottom-left-horizontal horizontal" />
+          <div className="border-cameara bottom-right-horizontal horizontal" />
+
+          <div className="border-cameara top-left-vertical vertical" />
+          <div className="border-cameara top-right-vertical vertical" />
+          <div className="border-cameara bottom-left-vertical vertical" />
+          <div className="border-cameara bottom-right-vertical vertical" />
+        </div>
+        <video
+          className={showCamera ? "qr-camera show-camera" : "qr-camera"}
+          ref={qrRef}
+        ></video>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <button
+        onClick={() => {
+          startScan().catch(console.error);
+        }}
+      >
+        Start
+      </button>
+      <button
+        onClick={() => {
+          qrScanner && qrScanner.stop();
+        }}
+      >
+        Stop
+      </button>
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -40,3 +40,115 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.scan-qr-code {
+  .btn-paste {
+    display: flex;
+    padding: 0 60px;
+  }
+
+  .title-scan {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .camera-area {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    border-radius: 20px;
+    padding: 0;
+    background: var(--ion-color-medium);
+    overflow: hidden;
+    margin: 30px;
+  }
+
+  .wrap-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-width: 100px 60px;
+    border-style: solid;
+    border-color: #aca3a34b;
+    box-sizing: border-box;
+    inset: 0px;
+    z-index: 99;
+
+    .border-cameara {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .horizontal {
+      width: 40px;
+      height: 5px;
+    }
+
+    .vertical {
+      width: 5px;
+      height: 40px;
+    }
+
+    .top-right-horizontal {
+      top: -5px;
+      right: 0px;
+    }
+
+    .top-left-horizontal {
+      top: -5px;
+      left: 0px;
+    }
+
+    .bottom-left-horizontal {
+      bottom: -5px;
+      left: 0px;
+    }
+
+    .bottom-right-horizontal {
+      bottom: -5px;
+      right: 0px;
+    }
+
+    .top-right-vertical {
+      top: -5px;
+      right: -5px;
+    }
+
+    .top-left-vertical {
+      top: -5px;
+      left: -5px;
+    }
+
+    .bottom-left-vertical {
+      bottom: -5px;
+      left: -5px;
+    }
+
+    .bottom-right-vertical {
+      bottom: -5px;
+      right: -5px;
+    }
+  }
+
+  .qr-camera {
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    opacity: 0;
+  }
+
+  .show-camera {
+    opacity: 1;
+  }
+
+  .clipboard-paste-warper {
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
